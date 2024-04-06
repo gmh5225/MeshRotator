@@ -41,9 +41,9 @@ namespace scene {
         AAssetManager* aAssetManager_;
         TimeManager timeManager_;
 
-        std::vector<Model> models_;
+        std::vector<Model*> models_;
 
-        std::unique_ptr<Shader> pillarShader_;
+        std::unique_ptr<Shader> aircraftShader_;
         std::unique_ptr<Shader> outlineShader_;
         std::unique_ptr<Shader> screenShader_;
 
@@ -53,11 +53,9 @@ namespace scene {
         GLuint uboMatrices_;
 
         //TODO Think about SOLID here
-        void renderModels(Model& model) const;
+        void renderModel(Model* model) const;
         void renderFramebuffer() const;
         void destroyUniformBuffers();
-        void addPillar();
-        void addBrokenPillar();
         void addAircraft();
         void addPointLights() const;
         void addDirectionalLights() const;

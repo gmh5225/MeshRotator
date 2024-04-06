@@ -1,6 +1,10 @@
 #include "Model.hpp"
 #include "NDKHelper.hpp"
 
+ndk_helper::mdl::Model::Model() : position_{0.0f, 0.0f, 0.0f}, scale_{1.0f, 1.0f, 1.0f} {
+
+}
+
 ndk_helper::mdl::Model::Model(
         const ndk_helper::mesh::Mesh& mesh,
         const glm::vec3& position,
@@ -21,7 +25,7 @@ void ndk_helper::mdl::Model::addTexture(ndk_helper::mesh::Texture texture) {
     textures_.emplace_back(texture);
 }
 
-void ndk_helper::mdl::Model::draw(ndk_helper::shdr::Shader& shader) const {
+void ndk_helper::mdl::Model::draw(Shader& shader) const {
     for (auto i = 0; i != textures_.size(); ++i) {
         glActiveTexture(GL_TEXTURE0 + i);
         std::string name = textures_[i].type == mesh::TextureType::DIFFUSE ? "diffuse" : "normal";
